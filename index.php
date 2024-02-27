@@ -14,6 +14,8 @@
     //     6. Flesh out Im New Button to change verbage on the page or get rid of it
     //     7. Possible Archived section using good effects
     //     8. Make it pretty
+    //
+    //   Known Bugs:
 
     require 'src/Application.php';
 ?>

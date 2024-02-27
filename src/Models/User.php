@@ -42,6 +42,6 @@ class User
              VALUES (:username, :password)
         SQL;
         $data = ['username' => $username, 'password' => $password];
-        return $this->runQuery($query, $data) ?? false;
+        return $this->runInsert($query, $data);
     }
 }

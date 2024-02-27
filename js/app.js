@@ -55,12 +55,11 @@ $(document).on('click', '#back', function(event){
 
 $(document).on('click', '#register', function(event){
     event.preventDefault();
-    $('#register').attr('disabled', 'disabled');
-    var verify = $('#verify-password').val();
-    if (password != verify) {
+    if ($('#password').val() != $('#verify-password').val()) {
         alert('Passwords do not match');
         return;
     } else {
+        $('#register').attr('disabled', 'disabled');
         $.ajax({
             url:"index.php",
             method:"POST",
