@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="d-flex justify-content-center align-items-center mb-4">
+            <div class="text-center">
+                <h1>Lets Get planning!</h1>
+            </div>
+        </div>
+        <div class="d-flex gap-3">
+            <div class="tasks-content card col-12 col-sm-8 col-md-6 col-lg-8">
+                <div class="card-body">
+
+                </div>
+            </div>
+            <div class="col-12 col-sm-8 col-md-2 col-lg-3 d-flex flex-column gap-3 justify-content-start">
+                <button id="add" type="button" class="btn btn-primary w-120 hexagon-button">Add Task</button>
+                <button id="about" class="btn btn-danger w-120 hexagon-button">About</button>
+            </div>
+            <div class="col-12 col-sm-8 col-md-2 col-lg-3 d-flex flex-column gap-3 justify-content-start mt-4">
+                <button id="archive" type="button" class="btn btn-secondary w-120 hexagon-button">Archive</button>
+                <button id="logout" class="btn btn-danger w-120 hexagon-button">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+/* CSS styles go here */
+:root {
+    --text-color: black;
+    --primary-color: #5E747F;
+    --secondary-color: #7B9E87;
+    --tertiary-color: #B6BE9C;
+    --quaternary-color: #E5C1BD;
+    --quinary-color: #D2D0BA;
+    --background-color-1: #F5F5F5;
+    --background-color-2: #d8d3d3;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(15deg, var(--background-color-1), var(--background-color-2));
+}
+
+#back {
+    height: 166px;
+}
+
+.tasks-content {
+    min-height: 300px;
+}
+
+.hexagon-button {
+    clip-path: polygon(7% 0, 93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%);
+    transition: transform .5s ease;
+    height: 50px;
+}
+
+.hexagon-button:hover {
+    transform: scale(1.1) translate3d(0, 0, 0);
+}
+
