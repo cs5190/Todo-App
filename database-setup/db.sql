@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS `tasks`;
 
 CREATE TABLE `tasks` (
   `userId` int NOT NULL,
-  `taskId` int NOT NULL,
+  `taskId` int NOT NULL AUTO_INCREMENT,
   `label` varchar(30) DEFAULT NULL,
   `description` varchar(300) DEFAULT NULL,
   `dueDate` date DEFAULT NULL,
