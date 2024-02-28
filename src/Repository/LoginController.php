@@ -2,13 +2,6 @@
 
 class LoginController extends Controller
 {
-	private $user;
-
-	//constructor 
-	public function __construct() {	
-		$this->checkUserInitialized();
-	}
-
 	public function welcome() {
 		return $this->render('welcome');
 	}
@@ -45,15 +38,6 @@ class LoginController extends Controller
 			return $this->render('tasks');
 		} else {
 			return "User creation failed";
-		}
-	}
-
-	private function checkUserInitialized() {
-		$username = $_SESSION['username'] ?? '';
-		if (!$this->user) {
-			if ($username) {
-				$this->user = new User($username);
-			}
 		}
 	}
 }

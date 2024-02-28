@@ -33,3 +33,6 @@ body {
     transform: scale(1.1) translate3d(0, 0, 0);
 }
 
+#task-due-date {
+    cursor: pointer;
+}

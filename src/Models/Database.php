@@ -37,7 +37,7 @@ Trait Database {
 				return false;
 			}
 		
-			return true;
+			return $databaseConnection->lastInsertId();
 		} catch (PDOException $e) {
 			echo $e->getMessage();
 			return false;

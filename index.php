@@ -1,10 +1,9 @@
 <?php
     // Main tasks:
     //   Project:
-    //     1. Successful Task CRUD
-    //     2. Username and password requirements verification
+    //     1. Username and password requirements verification
     //   Backend:
-    //     1. Flesh out the TaskController
+    //     1. patch up difference between username and $this->username in User class
     //     2. Add error handling
     //   Frontend:
     //     1. Flesh out the views, possible templating?
@@ -26,6 +25,9 @@
         <title>Todo App</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="css/app.css"/>
+        <script src="js/jQuery/jquery-3.7.1.min.js"></script>
+        <script src="js/bootstrap/bootstrap.js"></script>
+        <script src="js/app.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -46,8 +48,6 @@
                 </div>
             </div>
         </div>
+        <?php include 'views/Components/add-task-modal.php'; ?>
     </body>
 </html>
-<script src="js/jQuery/jquery-3.7.1.min.js"></script>
-<script src="js/bootstrap/bootstrap.js"></script>
-<script src="js/app.js"></script>

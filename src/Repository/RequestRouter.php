@@ -28,11 +28,14 @@
                 case "tasks":
                     return $this->taskController->render('tasks');
                     break;
+                case "tasks/get":
+                    return $this->taskController->getTasks();
+                    break;
                 case "tasks/add":
-                    return $this->taskController->add($payload['task']);
+                    return $this->taskController->addTask($payload['task']);
                     break;
                 case "tasks/delete":
-                    return $this->taskController->delete($payload['id']);
+                    return $this->taskController->deleteTask($payload['id']);
                     break;
                 default:
                     return $this->loginController->welcome();
