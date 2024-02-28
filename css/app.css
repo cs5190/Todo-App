@@ -16,7 +16,16 @@ body {
 }
 
 #back {
-    height: 166px;
+    background: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: x-large;
+    border: none;
+    border-radius: 5px;
+    padding: 0;
+    margin-top: 8px;
+    cursor: pointer;
+    height: 30px;
 }
 
 .tasks-content {
@@ -35,4 +44,44 @@ body {
 
 #task-due-date {
     cursor: pointer;
+}
+
+@keyframes blink {
+    0% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+.slow-blink {
+    animation: blink 5s infinite;
+}
+
+.title-container {
+    min-height: 68px;
+}
+
+.description-container {
+    height: 10px;
+    margin-bottom: 12px;
+    transition: 1.5s;
+}
+
+.description-container.active {
+    height: 43px;
+}
+
+.typing-effect {
+    display: none;
+}
+
+.info-button {
+    background-color: white;
+}
+
+.welcome-box {
+    gap: 20px;
 }

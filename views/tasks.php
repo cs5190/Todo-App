@@ -2,8 +2,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="d-flex justify-content-center align-items-center mb-4">
-            <div class="text-center">
-                <h1>Lets Get planning!</h1>
+            <div class="text-center title-container">
+                <h1 id="task-message" class="typing-effect">Lets Get To Work</h1>
             </div>
         </div>
         <div class="d-flex gap-3">
@@ -11,6 +11,9 @@
                 <div class="card-body">
                 <ul id="todo-list" class="list-group">
                     <!-- List items will be added here -->
+                </ul>
+                <ul id="archive-list" class="list-group">
+                    <!-- Archived List items will be added here -->
                 </ul>
                 </div>
             </div>

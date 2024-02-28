@@ -10,9 +10,8 @@
     //     2. Add More scripts in app.js
     //     3. Flesh out CSS and general vibe of the project
     //     5. Add ADA compliance to the project
-    //     6. Flesh out Im New Button to change verbage on the page or get rid of it
-    //     7. Possible Archived section using good effects
-    //     8. Make it pretty
+    //     6. Possible Archived section using good effects
+    //     7. Make it pretty
     //
     //   Known Bugs:
 
@@ -48,6 +47,9 @@
                 </div>
             </div>
         </div>
-        <?php include 'views/Components/add-task-modal.php'; ?>
+        <?php
+            include 'views/Components/add-task-modal.php';
+            include 'views/Components/error-modal.php';
+        ?>
     </body>
 </html>

@@ -1,7 +1,13 @@
 // functional request scripts
+setTimeout(function() {
+    typingEffect('#initial-welcome');
+    findInputFocus();
+    renderPageTasks();
+    addActiveClassAndTypeEffect('#welcome-info-button', '#welcome-info');
+    addActiveClassAndTypeEffect('#password-info-button', '#password-info');
+    addActiveClassAndTypeEffect('#new-password-info-button', '#new-password-info');
+}, 100);
 
-findInputFocus();
-renderPageTasks()
 
 $(document).on('keydown', 'form input', function(event) {
     if (event.key === 'Enter') {
@@ -10,8 +16,22 @@ $(document).on('keydown', 'form input', function(event) {
     }
 });
 
+function addActiveClassAndTypeEffect(buttonId, infoId) {
+    $(document).on('click', buttonId, function(event){
+        event.preventDefault();
+        var descContainer = $(infoId).parent();
+        descContainer.addClass('active');
+        typingEffect(infoId);
+    });
+}
+
 $(document).on('click', '#submit', function(event){
     event.preventDefault();
+    var username = $('#username').val();
+    if (username.length > 25) {
+        openErrorModal('Username cannot be more than 25 characters');
+        return;
+    }
     $('#submit').attr('disabled', 'disabled');
     $.ajax({
         url:"index.php",
@@ -19,7 +39,7 @@ $(document).on('click', '#submit', function(event){
         data: {
             route: 'userExists',
             payload: {
-                username: $('#username').val()
+                username: username
             }
         },
         success:function(data)
@@ -32,6 +52,12 @@ $(document).on('click', '#submit', function(event){
 
 $(document).on('click', '#login', function(event){
     event.preventDefault();
+    var password = $('#password').val();
+    var passwordRegex = /^(?=.*[0-9]|.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+    if (!passwordRegex.test(password)) {
+        openErrorModal('Password must be at least 8 characters and include a number or a special character');
+        return;
+    }
     $('#login').attr('disabled', 'disabled');
     $.ajax({
         url:"index.php",
@@ -39,7 +65,7 @@ $(document).on('click', '#login', function(event){
         data: {
             route: 'login',
             payload: {
-                password: $('#password').val()
+                password: password
             }
         },
         success:function(data)
@@ -90,6 +116,7 @@ $(document).on('click', '#logout', function(event){
         success:function(data)
         {
             renderPageContent(data);
+            location.reload(true);
             findInputFocus();
         }
     })
@@ -222,7 +249,30 @@ function renderPageTasks() {
         if ($('#tasks-page').length != 0) {
             setCurrentDate();
             renderUserTasks();
+            typingEffect('#task-message');
         }
     }, 100);
-    
+}
+
+function typingEffect(elementId) {
+    var text = $(elementId).text();
+    $(elementId).text('');
+    $(elementId).show();
+    var speed =  100;
+    if (text.length > 15) {
+        speed -= (text.length);
+    }
+    var character = 0;
+
+    $(elementId).append('<span class="blink">.</span>');
+
+    function typeWriter() {
+        if (character < text.length) {
+            $(elementId).children('.blink').before(text.charAt(character));
+            character++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+
+    typeWriter();
 }
