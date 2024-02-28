@@ -22,6 +22,10 @@ class TaskController extends Controller{
         }
     }
 
+    public function updateTask($task) {
+        return $this->user->updateTask($task);
+    }
+
     public function archiveTask($id) {
         return $this->user->archiveTask($id);
     }

@@ -69,6 +69,18 @@ class User
         return $this->runInsert($query, $data);
     }
 
+    public function updateTask($task) {
+        $query = <<<SQL
+        UPDATE $this->taskTable
+           SET label = :label,
+               description = :description,
+               dueDate = :dueDate
+         WHERE taskId = :taskId
+        SQL;
+        $data = ['label' => $task['label'], 'description' => $task['description'], 'dueDate' => $task['dueDate'], 'taskId' => $task['taskId']];
+        return $this->runQuery($query, $data);
+    }
+
     public function archiveTask($id) {
         $query = <<<SQL
         UPDATE $this->taskTable

@@ -50,6 +50,7 @@
             include 'views/Components/add-task-modal.php';
             include 'views/Components/error-modal.php';
             include 'views/Components/about-modal.php';
+            include 'views/Components/edit-task-modal.php';
         ?>
     </body>
 </html>

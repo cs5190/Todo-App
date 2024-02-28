@@ -52,20 +52,40 @@ $(document).on('click', '#login', function(event){
         openErrorModal('Password must be at least 8 characters and include a number or a special character');
         return;
     }
-    $('#login').attr('disabled', 'disabled');
     $.ajax({
         url:"index.php",
         method:"POST",
         data: {
-            route: 'login',
+            route: 'verifyLogin',
             payload: {
                 password: password
             }
         },
         success:function(data)
         {
-            renderPageContent(data);
-            $('#archive-list').hide();
+            console.log(data);  
+            if (data == 1) {
+                $('#login').attr('disabled', 'disabled');
+                $.ajax({
+                    url:"index.php",
+                    method:"POST",
+                    data: {
+                        route: 'login',
+                        payload: {
+                            password: password
+                        }
+                    },
+                    success:function(data)
+                    {
+                        renderPageContent(data);
+                        $('#archive-list').hide();
+                    }
+                });
+            } else {
+                // Password is incorrect, show an error message
+                openErrorModal('Incorrect password');
+                return;
+            }
         }
     })
 });
@@ -190,11 +210,14 @@ $(document).on('click', '#about', function(event){
     typingEffect('#about-modal-title');
 });
 
-/* todo add input focus to the add task modal. doesnt work right
+/* todo add input focus to the add task modal. doesnt work right */
 $(document).on('click', '#add', function(event){
-    findInputFocus();
+    //clear out the inputs in the add modal
+    $('#task-label').val('');
+    $('#task-description').val('');
+    setCurrentDate();
 });
-*/
+
 
 $(document).on('click', '#send-task-form', function(event){
     event.preventDefault();
@@ -224,10 +247,57 @@ $(document).on('click', '#send-task-form', function(event){
         },
         success:function(data)
         {
-            task.taskId = JSON.parse(data);
             appendTaskCard(task);
         }
     })
+});
+
+$(document).on('click', '#send-edit-task-form', function(event){
+    event.preventDefault();
+
+    var task = {
+        taskId: $(this).data('id'),
+        label: $('#edit-task-label').val(),
+        description: $('#edit-task-description').val(),
+        dueDate: $('#edit-task-due-date').val()
+    };
+
+    console.log(task);
+
+    if (task.label.length > 30) {
+        alert('Label cannot be more than 30 characters');
+        return;
+    }
+
+    if (task.description.length > 300) {
+        alert('Description cannot be more than 300 characters');
+        return;
+    }
+
+    $.ajax({
+        url:"index.php",
+        method:"POST",
+        data: {
+            route: 'tasks/update',
+            payload: { task: task }
+        },
+        success:function(data)
+        {
+            renderUserTasks();
+        }
+    })
+});
+
+
+$(document).on('click', '.edit-button', function(event){
+    var taskId = $(this).data('id');
+    var label = $(this).data('label'); 
+    var description = $(this).data('description');
+    var dueDate = $(this).data('due-date');
+    $('#edit-task-label').val(label);
+    $('#edit-task-description').val(description);
+    $('#edit-task-due-date').val(dueDate);
+    $('#send-edit-task-form').attr('data-id', taskId);
 });
 
 function findInputFocus() {
@@ -273,6 +343,9 @@ function generateTaskCard(task) {
         card += '<button class="btn btn-primary task-button archive-button" data-id="' + task.taskId + '">';
         card += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">';
         card += '<path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/></svg></button>';
+        card += '<button class="btn btn-primary task-button edit-button" data-id="' + task.taskId + '" data-label="' + task.label + '" data-description="' + task.description + '" data-due-date="' + task.dueDate + '" data-bs-toggle="modal" data-bs-target="#editTaskModal" aria-label="Edit task">';
+        card += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">';
+        card += '<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/></svg></button>';
     }
     card += '</div></li>';
     return card;

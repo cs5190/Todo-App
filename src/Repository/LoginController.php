@@ -17,6 +17,16 @@ class LoginController extends Controller
 		}
 	}
 
+	public function verifyLogin($password) {
+		$this->checkUserInitialized();
+		$userPassword = $this->user->getPassword();
+		if (password_verify($password, $userPassword[0]->password)) {
+			return true;
+		} else {
+			return false;;
+		}
+	}
+
 	public function login($password) {
 		$this->checkUserInitialized();
 		$userPassword = $this->user->getPassword();
@@ -25,7 +35,7 @@ class LoginController extends Controller
 			$_SESSION['loggedIn'] = true;
 			return $this->render('tasks');
 		} else {
-			return "Login failed";
+			return $this->render('login');
 		}
 	}
 

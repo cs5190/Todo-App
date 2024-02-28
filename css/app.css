@@ -62,6 +62,10 @@ body {
 
 }
 
+.task .card-body {
+    margin-right: 2rem
+}
+
 .task.past-due {
     background-color: var(--button-secondary-color );
     color: var(--text-color);
@@ -103,7 +107,8 @@ body {
     position: absolute;
 }
 
-.restore-button {
+.restore-button,
+.edit-button {
     margin-top: 3.5rem;
     margin-right: 1rem;
 }

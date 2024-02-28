@@ -19,6 +19,9 @@
                 case 'userExists':
                     return $this->loginController->userExists($payload['username']);
                     break;
+                case 'verifyLogin':
+                    return $this->loginController->verifyLogin($payload['password']);
+                    break;
                 case "login":
                     return $this->loginController->login($payload['password']);
                     break;
@@ -34,6 +37,9 @@
                     break;
                 case "tasks/get":
                     return $this->taskController->getTasks();
+                    break;
+                case "tasks/update":
+                    return $this->taskController->updateTask($payload['task']);
                     break;
                 case "tasks/add":
                     return $this->taskController->addTask($payload['task']);
