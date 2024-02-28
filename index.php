@@ -1,19 +1,20 @@
 <?php
-    // Main tasks:
-    //   Project:
-    //     1. Theres probably extra whitespace in my commits somewhere... should remove that
-    //   Backend:
-    //     1. Add extensive error handling
-    //   Frontend:
-    //     1. Templating for views
-    //     2. Add More ADA compliance to the project
-    //     3. Organize app.js yikes
-    //     4. Cleanup the css and make it more responsive
-    //
-    //   Known Bugs:
-    //     1. (BIGish...) The default tasks will load every time if the users tasks are empty, this should be changed to a first time login basis
-    //     1. The focus does not go to the input field when the new task modal is opened. See todo in app.js
-    //     2. The task buttons can collide with the labels and descriptions when they are too long
+    /* Main tasks:
+        Project:
+            1. Theres probably extra whitespace in my commits somewhere... should remove that
+        Backend:
+            1. Add extensive error handling
+        Frontend:
+            1. Templating for views
+            2. Add More ADA compliance to the project
+            3. Organize app.js yikes
+            4. Cleanup the css and make it more responsive
+    
+        Known Bugs:
+            1. (BIGish...) The default tasks will load every time if the users tasks are empty, this should be changed to a first time login basis
+            1. The focus does not go to the input field when the new task modal is opened. See todo in app.js
+            2. The task buttons can collide with the labels and descriptions when they are too long
+    */
 
     require 'src/Application.php';
 ?>
