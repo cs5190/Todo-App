@@ -34,6 +34,12 @@
                 case "tasks/add":
                     return $this->taskController->addTask($payload['task']);
                     break;
+                case "tasks/archive":
+                    return $this->taskController->archiveTask($payload['id']);
+                    break;
+                case "tasks/restore":
+                    return $this->taskController->restoreTask($payload['id']);
+                    break;
                 case "tasks/delete":
                     return $this->taskController->deleteTask($payload['id']);
                     break;

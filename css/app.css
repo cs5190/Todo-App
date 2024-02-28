@@ -1,18 +1,45 @@
 /* CSS styles go here */
 :root {
-    --text-color: black;
-    --primary-color: #5E747F;
-    --secondary-color: #7B9E87;
-    --tertiary-color: #B6BE9C;
-    --quaternary-color: #E5C1BD;
-    --quinary-color: #D2D0BA;
-    --background-color-1: #F5F5F5;
-    --background-color-2: #d8d3d3;
+    --text-color: white;
+    --primary-color: black;
+    --secondary-color: #666666;
+    --tertiary-color: #999999;
+    --background-color: #131313;
+    --button-color: #182c25;
+    --button-hover-color: #455b55;
+    --button-secondary-color: #306844;
+    --button-tertiary-color: #2c4c3b;
+    --button-quaternary-color: #1e453e;
 }
 
 body {
-    height: 100vh;
-    background: linear-gradient(15deg, var(--background-color-1), var(--background-color-2));
+    height: 100%;
+    background: linear-gradient(15deg, var(--primary-color), var(--background-color));
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    color: var(--text-color);
+}
+
+.main-content-container {
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    min-height: 100vh;
+}
+
+.text-black {
+    color: var(--text-color);
+}
+
+.card,
+.modal-content {
+    background-color: var(--secondary-color);
+}
+
+.modal-header,
+.modal-footer {
+    border: none;;
 }
 
 #back {
@@ -28,36 +55,80 @@ body {
     height: 30px;
 }
 
+.task {
+    background-color: var(--button-quaternary-color);
+    color: var(--text-color);
+    font-weight: 600;
+
+}
+
+.task.past-due {
+    background-color: var(--button-secondary-color );
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.task.due-today {
+    background-color: var(--button-tertiary-color);
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.task.archived {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.past-due .due-date {
+    animation: blink 3s infinite;
+}
+
 .tasks-content {
     min-height: 300px;
 }
 
-.hexagon-button {
-    clip-path: polygon(7% 0, 93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%);
-    transition: transform .5s ease;
-    height: 50px;
+.button-container {
+    width: 50px;
 }
 
-.hexagon-button:hover {
-    transform: scale(1.1) translate3d(0, 0, 0);
+.task-button {
+    transition: .1s ease;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    right: 0;
+    margin: 1rem;
+    position: absolute;
+}
+
+.restore-button {
+    margin-top: 3.5rem;
+    margin-right: 1rem;
+}
+
+.menu-button {
+    transition: .1s ease;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.menu-button:hover {
+    transform: scale(1.1);
+}
+
+.menu-button:hover svg {
+    transform: scale(0.909);
 }
 
 #task-due-date {
     cursor: pointer;
 }
 
-@keyframes blink {
-    0% {opacity: 1;}
-    50% {opacity: 0;}
-    100% {opacity: 1;}
-}
-
 .blink {
     animation: blink 1s infinite;
-}
-
-.slow-blink {
-    animation: blink 5s infinite;
 }
 
 .title-container {
@@ -70,18 +141,116 @@ body {
     transition: 1.5s;
 }
 
+/* could use some media query to make it responsive */
 .description-container.active {
-    height: 43px;
+    height: 60px;
 }
 
 .typing-effect {
     display: none;
 }
 
+.form-text {
+    color: var(--text-color);
+}
+
 .info-button {
-    background-color: white;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    border: none;
+}
+
+.info-button:hover,
+.info-button:focus {
+    background-color: var(--secondary-color);
+}
+
+.form-control {
+    background-color: var(--tertiary-color);
+    color: var(--text-color);
+    border: none;
+}
+
+.form-control:focus {
+    background-color: var(--tertiary-color);
+    color: var(--text-color);
+}
+
+.form-control::placeholder {
+    color: var(--text-color);
+}
+
+.btn-primary {
+    background-color: var(--button-color);
+    border: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: .1s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--button-hover-color);
+    color: var(--text-color);
+}
+
+.btn-secondary {
+    background-color: var(--button-secondary-color);
+    border: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: .1s ease;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: var(--button-tertiary-color);
+    color: var(--text-color);
+}
+
+.btn-tertiary {
+    background-color: var(--button-tertiary-color);
+    border: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: .1s ease;
+}
+
+.btn-tertiary:hover,
+.btn-tertiary:focus {
+    background-color: var(--button-quaternary-color);
+    color: var(--text-color);
+}
+
+.btn-quaternary {
+    background-color: var(--button-quaternary-color);
+    border: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: .1s ease;
+}
+
+.btn-quaternary:hover,
+.btn-quaternary:focus {
+    background-color: var(--button-tertiary-color);
+    color: var(--text-color);
 }
 
 .welcome-box {
     gap: 20px;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    0% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}
 }

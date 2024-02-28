@@ -49,9 +49,10 @@ class User
     public function getTasks() {
         $query = <<<SQL
          SELECT t.taskId, t.label, t.description, t.dueDate, t.isArchived
-         FROM tasks t
-         JOIN users u on t.userId = u.userId
-         WHERE u.username = :username
+           FROM tasks t
+           JOIN users u on t.userId = u.userId
+          WHERE u.username = :username
+          ORDER BY t.dueDate ASC
         SQL;
         $data = ['username' => $this->username];
         return $this->runQuery($query, $data);
@@ -65,6 +66,26 @@ class User
         SQL;
         $data = ['label' => $task['label'], 'description' => $task['description'], 'dueDate' => $task['dueDate'], 'username' => $this->username];
         return $this->runInsert($query, $data);
+    }
+
+    public function archiveTask($id) {
+        $query = <<<SQL
+        UPDATE $this->taskTable
+           SET isArchived = 1
+         WHERE taskId = :id
+        SQL;
+        $data = ['id' => $id];
+        return $this->runQuery($query, $data);
+    }
+
+    public function restoreTask($id) {
+        $query = <<<SQL
+        UPDATE $this->taskTable
+           SET isArchived = 0
+         WHERE taskId = :id
+        SQL;
+        $data = ['id' => $id];
+        return $this->runQuery($query, $data);
     }
 
     public function deleteTask($id) {

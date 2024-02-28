@@ -11,6 +11,14 @@ class TaskController extends Controller{
         return $this->user->addTask($task);
     }
 
+    public function archiveTask($id) {
+        return $this->user->archiveTask($id);
+    }
+
+    public function restoreTask($id) {
+        return $this->user->restoreTask($id);
+    }
+
     public function deleteTask($id) {
         return $this->user->deleteTask($id);
     }

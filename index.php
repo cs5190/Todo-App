@@ -1,25 +1,25 @@
 <?php
     // Main tasks:
     //   Project:
-    //     1. Username and password requirements verification
+    //     1. Theres probably extra whitespace in my commits somewhere... should remove that
     //   Backend:
-    //     1. patch up difference between username and $this->username in User class
-    //     2. Add error handling
+    //     1. Add extensive error handling
     //   Frontend:
-    //     1. Flesh out the views, possible templating?
-    //     2. Add More scripts in app.js
-    //     3. Flesh out CSS and general vibe of the project
-    //     5. Add ADA compliance to the project
-    //     6. Possible Archived section using good effects
-    //     7. Make it pretty
+    //     1. Templating for views
+    //     2. Add More ADA compliance to the project
+    //     3. Organize app.js yikes
+    //     4. Cleanup the css and make it more responsive
     //
     //   Known Bugs:
+    //     1. (BIGish...) The default tasks will load every time if the users tasks are empty, this should be changed to a first time login basis
+    //     1. The focus does not go to the input field when the new task modal is opened. See todo in app.js
+    //     2. The task buttons can collide with the labels and descriptions when they are too long
 
     require 'src/Application.php';
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Todo App</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"/>
@@ -32,11 +32,11 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Todo App</a>
+                    <a class="navbar-brand text-black" href="#" aria-label="Todo App Home">Todo App</a>
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <main class="main-content-container container" role="main">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-6">
                     <div class="page-container">
@@ -46,10 +46,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         <?php
             include 'views/Components/add-task-modal.php';
             include 'views/Components/error-modal.php';
+            include 'views/Components/about-modal.php';
         ?>
     </body>
 </html>
