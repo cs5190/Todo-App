@@ -236,17 +236,6 @@ function findInputFocus() {
     }, 100);
 }
 
-function getDefaultTasks() {
-    fetch('js/tasks.json')
-        .then(response => response.json())
-        .then(tasks => {
-            $.each(tasks, function(index, task) {
-                appendTaskCard(task);
-            });
-        })
-        .catch(error => console.log('Error:', error));
-}
-
 function openErrorModal(message) {
     $('#errorModal').modal('show');
     $('#errorModalBody').text(message);
@@ -342,13 +331,9 @@ function renderUserTasks() {
         success:function(data)
         {
             var tasks = JSON.parse(data);
-            if (!tasks || tasks.length == 0) {
-                getDefaultTasks(); 
-            } else {
-                $.each(tasks, function(index, task) {
-                    appendTaskCard(task);
-                });
-            }
+            $.each(tasks, function(index, task) {
+                appendTaskCard(task);
+            });
         }
     })
 }

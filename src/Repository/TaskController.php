@@ -11,6 +11,17 @@ class TaskController extends Controller{
         return $this->user->addTask($task);
     }
 
+    public function addDefaultTasks() {
+        $defaultTasks = [
+            ['label' => 'Begin Project!', 'description' => 'Time to take on this challenge!', 'dueDate' => '2024-02-23', 'isArchived' => 1],
+            ['label' => 'Complete Todo Project!', 'description' => 'Need to finish this project! :D', 'dueDate' => '2024-02-27'],
+            ['label' => 'Commence Future Projects!', 'description' => 'Time to tackle some challenges!', 'dueDate' => '2024-03-02']
+        ];
+        foreach ($defaultTasks as $task) {
+            $this->user->addTask($task);
+        }
+    }
+
     public function archiveTask($id) {
         return $this->user->archiveTask($id);
     }

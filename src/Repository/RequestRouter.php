@@ -23,7 +23,11 @@
                     return $this->loginController->login($payload['password']);
                     break;
                 case "create":
-                    return $this->loginController->createNewUser($payload['password']);
+                    $newUserResult = $this->loginController->createNewUser($payload['password']);
+                    if ($newUserResult) {
+                        $this->taskController->addDefaultTasks();
+                    }
+                    return $newUserResult;
                     break;
                 case "tasks":
                     return $this->taskController->render('tasks');

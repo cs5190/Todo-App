@@ -59,12 +59,13 @@ class User
     }
 
     public function addTask($task) {
+        $isArchived = $task['isArchived'] ?? 0;
         $query = <<<SQL
         INSERT INTO $this->taskTable
-                    (label, description, dueDate, userId)
-             VALUES (:label, :description, :dueDate, (SELECT userId FROM $this->userTable WHERE username = :username))
+                    (label, description, dueDate, userId, isArchived)
+             VALUES (:label, :description, :dueDate, (SELECT userId FROM $this->userTable WHERE username = :username), :isArchived)
         SQL;
-        $data = ['label' => $task['label'], 'description' => $task['description'], 'dueDate' => $task['dueDate'], 'username' => $this->username];
+        $data = ['label' => $task['label'], 'description' => $task['description'], 'dueDate' => $task['dueDate'], 'username' => $this->username, 'isArchived' => $isArchived];
         return $this->runInsert($query, $data);
     }
 

@@ -9,10 +9,7 @@
             2. Add More ADA compliance to the project
             3. Organize app.js yikes
             4. Cleanup the css and make it more responsive
-    
         Known Bugs:
-            1. (BIGish...) The default tasks will load every time if the users tasks are empty, this should be changed to a first time login basis
-              This also means that when you add a task the default tasks will dissapear, which is strange. Easily fixed by simple inserting them to the DB on first login
             1. The focus does not go to the input field when the new task modal is opened. See todo in app.js
             2. The task buttons can collide with the labels and descriptions when they are too long
     */
