@@ -422,9 +422,12 @@ function setCurrentDate() {
 function addActiveClassAndTypeEffect(buttonId, infoId) {
     $(document).on('click', buttonId, function(event){
         event.preventDefault();
-        var descContainer = $(infoId).parent();
-        descContainer.addClass('active');
-        typingEffect(infoId);
+        if (!$(buttonId).hasClass("clicked")) {
+            $(buttonId).addClass("clicked");
+            var descContainer = $(infoId).parent();
+            descContainer.addClass('active');
+            typingEffect(infoId);
+        }
     });
 }
 
