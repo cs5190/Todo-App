@@ -5,7 +5,7 @@
             2. Add Coachmarks to main App page to explain App functions
             3. Add Bio to about button
         Backend:
-            1. Add extensive error handling
+            1. Add extensive error handling (including when DB is not accessible)
         Frontend:
             1. Templating for views
             2. Add More ADA compliance to the project
