@@ -14,9 +14,8 @@
             5. Finalize styling (colors and alignment)
             6. Cleanup the icons to look better
         Known Bugs:
-            1. The focus does not go to the input field when the new task modal is opened. See todo in app.js
-            2. The task buttons can collide with the labels and descriptions when they are too long
-            3. Typewriter will scramble the info text when clicked multiple times, (minor fix by preventing 
+            1. The task buttons can collide with the labels and descriptions when they are too long
+            2. Typewriter will scramble the info text when clicked multiple times, (minor fix by preventing 
                multiple button presses)
     */
 

@@ -1,7 +1,7 @@
 // functional request scripts, put them on a quick delay for reliability, as development goes on many delays get removed.
 setTimeout(function() {
     typingEffect('#initial-welcome');
-    findInputFocus();
+    setInputFocus();
     renderPageTasks();
     addActiveClassAndTypeEffect('#welcome-info-button', '#welcome-info');
     addActiveClassAndTypeEffect('#password-info-button', '#password-info');
@@ -39,7 +39,7 @@ $(document).on('click', '#submit-username', function(event){
         success:function(data)
         {
             renderPageContent(data);
-            findInputFocus();
+            setInputFocus();
         }
     })
 });
@@ -138,7 +138,7 @@ $(document).on('click', '#logout', function(event){
         success:function(data)
         {
             location.reload(true);
-            findInputFocus();
+            setInputFocus();
         }
     })
 });
@@ -216,8 +216,8 @@ $(document).on('click', '#add', function(event){
     $('#task-label').val('');
     $('#task-description').val('');
     setCurrentDate();
+    setFocus("#task-label", 500);
 });
-
 
 $(document).on('click', '#send-task-form', function(event){
     event.preventDefault();
@@ -300,10 +300,16 @@ $(document).on('click', '.edit-button', function(event){
     $('#send-edit-task-form').attr('data-id', taskId);
 });
 
-function findInputFocus() {
+function setInputFocus() {
     setTimeout(function() {
         $('form input').first().trigger('focus');
     }, 100);
+}
+
+function setFocus(element, delay) {
+    setTimeout(function() {
+        $(element).trigger('focus');
+    }, delay);
 }
 
 function openErrorModal(message) {
